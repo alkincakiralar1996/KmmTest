@@ -1,4 +1,5 @@
 plugins {
+    id("maven-publish")
     kotlin("multiplatform")
     kotlin("native.cocoapods")
     id("com.android.library")
