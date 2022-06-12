@@ -3,6 +3,7 @@ plugins {
     kotlin("multiplatform")
     kotlin("native.cocoapods")
     id("com.android.library")
+    id("com.apollographql.apollo3").version("3.3.0")
 }
 
 version = "1.0"
@@ -28,12 +29,13 @@ kotlin {
     sourceSets {
         sourceSets["commonMain"].dependencies {
             implementation("org.jetbrains.kotlin:kotlin-stdlib-common")
+            implementation("com.apollographql.apollo3:apollo-runtime:3.3.0")
         }
 
         sourceSets["androidMain"].dependencies {
             implementation("org.jetbrains.kotlin:kotlin-stdlib")
         }
-        val commonMain by getting
+        val commonMain by getting {}
         val commonTest by getting {
             dependencies {
                 implementation(kotlin("test"))
@@ -60,6 +62,10 @@ kotlin {
             iosSimulatorArm64Test.dependsOn(this)
         }
     }
+}
+
+apollo {
+    packageName.set("com.makswin.bifrost")
 }
 
 android {
