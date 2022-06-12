@@ -1,0 +1,9 @@
+query calling_codes {
+    calling_codes(loginCodes: true) {
+        data {
+            id
+            key
+            value
+        }
+    }
+}

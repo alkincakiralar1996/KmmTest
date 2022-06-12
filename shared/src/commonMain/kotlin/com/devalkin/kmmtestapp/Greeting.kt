@@ -1,14 +1,19 @@
 package com.devalkin.kmmtestapp
 
 import com.apollographql.apollo3.ApolloClient
+import com.makswin.bifrost.Calling_codesQuery
 
 class Greeting {
-    fun greeting(): String {
+    suspend fun greeting(): List<Calling_codesQuery.Data1>? {
 
         val apolloClient = ApolloClient.Builder()
-            .serverUrl("https://example.com/graphql")
+            .serverUrl("https://zeus.fizbot.net/graphql")
             .build()
 
-        return "Hello, ${Platform().platform}!"
+        val callingCodesQuery = Calling_codesQuery()
+
+        val response = apolloClient.query(callingCodesQuery).execute()
+
+        return response.data?.calling_codes?.data
     }
 }
