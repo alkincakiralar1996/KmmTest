@@ -8,7 +8,10 @@ plugins {
 version = "1.0"
 
 kotlin {
-    android()
+    android {
+        publishLibraryVariants("release")
+    }
+
     iosX64()
     iosArm64()
     iosSimulatorArm64()
@@ -23,6 +26,13 @@ kotlin {
     }
     
     sourceSets {
+        sourceSets["commonMain"].dependencies {
+            implementation("org.jetbrains.kotlin:kotlin-stdlib-common")
+        }
+
+        sourceSets["androidMain"].dependencies {
+            implementation("org.jetbrains.kotlin:kotlin-stdlib")
+        }
         val commonMain by getting
         val commonTest by getting {
             dependencies {
